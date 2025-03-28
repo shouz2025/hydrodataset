@@ -189,10 +189,11 @@ class CamelsCh(Camels):
         )
         data_temp = pd.read_csv(gage_file, sep=",")
         obs = data_temp[var_type].values
-        obs = np.nan_to_num(obs, nan=nan_to_num)
         if var_type in ["discharge_vol(m3/s)", "discharge_spec(mm/d)"]:
-            # obs[obs < 0] = np.nan
-            obs[obs < 0] = nan_to_num
+            obs[obs < 0] = np.nan
+            # obs[obs < 0] = nan_to_num
+        else:
+            obs = np.nan_to_num(obs, nan=nan_to_num)
         date = pd.to_datetime(data_temp["date"]).values.astype("datetime64[D]")
         return time_intersect_dynamic_data(obs, date, t_range)
 
@@ -232,8 +233,8 @@ class CamelsCh(Camels):
             nf = len(target_cols)
         t_range_list = hydro_time.t_range_days(t_range)
         nt = t_range_list.shape[0]
-        # y = np.full([len(gage_id_lst), nt, nf], np.nan)
-        y = np.full([len(gage_id_lst), nt, nf], nan_to_num)
+        y = np.full([len(gage_id_lst), nt, nf], np.nan)
+        # y = np.full([len(gage_id_lst), nt, nf], nan_to_num)
         for j in tqdm(
             range(len(target_cols)), desc="Read streamflow data of CAMELS-CH"
         ):
