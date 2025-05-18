@@ -135,7 +135,7 @@ class Camels(HydroDataset):
         self.data_source_description = self.set_data_source_describe()
         if download:
             self.download_data_source()
-        self.forcing_type = arg["forcing_type"]
+        self.forcing_type = arg["forcing_type"]     # 面向对象
         self.gauge_id_tag = arg["gauge_id_tag"]
         self.data_file_attr = arg["data_file_attr"]
         self.sites = self.read_site_info()
@@ -1035,7 +1035,7 @@ class Camels(HydroDataset):
     #             ds_from_df[column].attrs["category_mapping"] = str(mapping_str)
     #     return ds_from_df
 
-    def cache_attributes_xrdataset(self):
+    def cache_attributes_xrdataset(self):   #
         """Convert all the attributes to a single dataframe
 
         Returns
