@@ -1250,7 +1250,7 @@ class Camels(HydroDataset):
         var_lst: list = None,
         **kwargs,
     ):
-        if var_lst is None:
+        if var_lst is None or len(var_lst) == 0:
             return None
         filename = "camels" + self.region.lower()
         filename = filename + "_timeseries.nc"
