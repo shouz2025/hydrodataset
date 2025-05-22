@@ -135,6 +135,7 @@ class Camels(HydroDataset):
         self.data_source_description = self.set_data_source_describe()
         if download:
             self.download_data_source()
+
         self.forcing_type = arg["forcing_type"]     # 面向对象
         self.gauge_id_tag = arg["gauge_id_tag"]
         self.data_file_attr = arg["data_file_attr"]
@@ -1069,7 +1070,7 @@ class Camels(HydroDataset):
 
     def get_attribute_units_dict(self):
         """
-
+        return the unit of attributions.
         Returns
         -------
 
